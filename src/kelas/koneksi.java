@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 
 public class koneksi {
+
+    
    private Connection konekSQL;
    private String host = "localhost";
    private String db = "tokokita";
