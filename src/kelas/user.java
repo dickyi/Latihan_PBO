@@ -102,7 +102,7 @@ public class user {
         try {
 
             ps = konek.prepareStatement(query);
-            
+
             ps.setString(1, user_name);
 
             ps.executeUpdate();
@@ -163,6 +163,39 @@ public class user {
             }
         }
 
+    }
+
+    public void login() {
+        query = "SELECT * FROM user WHERE user_name = ? AND user_password = MD5(?)";
+        try {
+
+            ps = konek.prepareStatement(query);
+
+            ps.setString(1, user_name);
+            ps.setString(2, user_password);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                session.setStatus("Aktif");
+                session.setNama(rs.getString("user_fullname"));
+                session.setEmail(rs.getString("user_email"));
+                session.setUserName(rs.getString("user_name"));
+            } else {
+                session.setStatus("Tidak Aktif");
+                JOptionPane.showMessageDialog(null, "UserName/Password Anda Salah");
+            }
+
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Login Gagal");
+        }
+    }
+
+    public void logOut() {
+        session.setStatus("");
+        session.setEmail("");
+        session.setNama("");
+        session.setUserName("");
     }
 
 }
