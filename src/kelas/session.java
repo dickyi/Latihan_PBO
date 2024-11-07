@@ -4,10 +4,7 @@
  */
 package kelas;
 
-/**
- *
- * @author Irawa
- */
+
 public class session {
 
     private static String UserName, Nama, Email,Status;
